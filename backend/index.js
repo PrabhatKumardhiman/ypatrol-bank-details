@@ -1,31 +1,20 @@
 const express = require('express')
-var cors = require('cors')
+const app = express()
+const dotenv = require('dotenv');
 
-// functiont to connect with MongoDB
+dotenv.config()// receving files form .env
+
+// Function to Connect to MONGODB
 const connectToMongo = require('./connectToMongo');
 connectToMongo()
 
-// Creating app from
-const app = express()
-const port = 5000
-
-// middleWare 
-app.use(express.json())
-app.use(cors())
-
-
-//  API calls
+// Response on http://localhost:5000/
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-// Router API Calls
-// app.use('/api/auth', require('./routes/auth'))
-// app.use('/api/pass', require('./routes/pass'))
+// Creating Routes from different CRUD Operation 
 
-
-// App Running on 
-app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`)
+app.listen(process.env.APP_PORT, () => {
+  console.log(`Example app listening on port ${process.env.APP_PORT}`)
 })
-
