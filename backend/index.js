@@ -4,6 +4,9 @@ const dotenv = require('dotenv');
 
 dotenv.config()// receving files form .env
 
+
+app.use(express.json())
+
 // Function to Connect to MONGODB
 const connectToMongo = require('./connectToMongo');
 connectToMongo()
@@ -14,6 +17,7 @@ app.get('/', (req, res) => {
 })
 
 // Creating Routes from different CRUD Operation 
+app.use('/api/details', require('./routes/details'))
 
 app.listen(process.env.APP_PORT, () => {
   console.log(`Example app listening on port ${process.env.APP_PORT}`)
