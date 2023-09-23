@@ -6,8 +6,9 @@ const MyForm = (props) => {
 
     // States
     const [weatherData, setWeatherData] = useState([])
-    const [bankDetails, setbankDetails] = useState([])
     console.log(weatherData);
+
+    const [bankDetails, setbankDetails] = useState([])
     console.log(bankDetails);
 
     // On Change Function on Inputs 
@@ -21,39 +22,36 @@ const MyForm = (props) => {
     const handlesubmit = async (e) => {
         e.preventDefault()
         const data = {
-            "user_id": 1,
-            "user_name": "John Doe",
+            "user_id": userid,
+            "user_name": name,
             "back_accounts": [
-                "HDFC0CAGSBK",
-                "Prabhat kumar"
+                bankDetails.IFSC
             ],
-            "id": 123,
-            "name": "Prabhat Kumar",
-            "accounts": {
-                "bank": "Some Bank",
-                "branch": "Some Branch",
-                "address": "123 Main Street",
-                "city": "City",
-                "district": "District",
-                "state": "State",
-                "bank_code": "ABC123",
+            "id": weatherData.main.id,
+            "name": name,
+            "accounts": [{
+                "bank": bankDetails.BANK,
+                "branch": bankDetails.BRANCH,
+                "address": bankDetails.ADDRESS,
+                "city": bankDetails.CITY,
+                "district": bankDetails.DISTRICT,
+                "state": bankDetails.STATE,
+                "bank_code": bankDetails.IFSC,
                 "weather": {
-                    "temp": 25.5,
-                    "humidity": 50
+                    "temp": weatherData.main.temp,
+                    "humidity": weatherData.main.humidity
                 }
-            }
+            }]
         }
         try {
             const response = await fetch(`http://localhost:5000/api/details/adddetails`, {
-                method: "POST", 
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(data), 
+                body: JSON.stringify(data),
             });
             const json = await response.json()
-            props.setState(json)
-
         } catch (error) {
             console.error(error.message)
         }
@@ -85,7 +83,7 @@ const MyForm = (props) => {
     // fetching weather information form weather API
     const fetchWeatherDetails = async (city) => {
         try {
-            const resp = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fc9e2431d2c395aa59fbad92138c8958`);
+            const resp = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fc9e2431d2c395aa59fbad92138c8958&units=metric`);
             const json = await resp.json();
             if (json.code === "404") {
                 setWeatherData([])
@@ -100,7 +98,7 @@ const MyForm = (props) => {
 
 
     return (
-        <div>
+        <div className = 'mb-5'>
             <form onSubmit={handlesubmit}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">

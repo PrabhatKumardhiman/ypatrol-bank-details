@@ -25,7 +25,7 @@ router.post('/adddetails', async (req, res) => {
                 user_id: id.user_id,
                 user_name: id.user_name,
                 back_accounts: id.back_accounts.concat(data.back_accounts),
-                id: id.id,
+                id: data.id,
                 name: id.name,
                 accounts: id.accounts.concat(data.accounts)
             })
