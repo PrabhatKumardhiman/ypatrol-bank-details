@@ -18,6 +18,19 @@ const MyForm = (props) => {
         props.setValue({ ...props.value, [e.target.name]: e.target.value })
     }
 
+    const fetchDataOnLoad = async () => {
+        try {
+          const response = await fetch(`http://localhost:5000/api/details/fetchalldetails`, {
+              method: "GET", 
+          });
+          const json = await response.json()
+          props.setState(json)
+    
+      } catch (error) {
+          console.error(error.message)
+      }
+      }
+
     // Handle submit function handeling click on add btn
     const handlesubmit = async (e) => {
         e.preventDefault()
@@ -27,7 +40,7 @@ const MyForm = (props) => {
             "back_accounts": [
                 bankDetails.IFSC
             ],
-            "id": weatherData.main.id,
+            "id": weatherData.id,
             "name": name,
             "accounts": [{
                 "bank": bankDetails.BANK,
@@ -52,9 +65,11 @@ const MyForm = (props) => {
                 body: JSON.stringify(data),
             });
             const json = await response.json()
+            fetchDataOnLoad()
         } catch (error) {
             console.error(error.message)
         }
+        
     }
 
     const handleClick = async (e) => {
