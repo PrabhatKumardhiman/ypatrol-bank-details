@@ -7,6 +7,7 @@ import Table from './components/Table';
 function App() {
 
   const [value, setValue] = useState({userid : "", name : "", bankcode : ""})
+  const [state, setState] = useState([])
 
   return (
     <div className="App">
@@ -15,10 +16,10 @@ function App() {
         <div className="container mt-4">
           <div className="row">
             <div className="col-12 col-md-4">
-              <MyForm setValue = {setValue} value = {value} />
+              <MyForm setValue = {setValue} value = {value} setState = {setState}/>
             </div>
             <div className="col-12 col-md-8">
-             <Table/>
+             <Table state = {state}/>
             </div>
           </div>
         </div>

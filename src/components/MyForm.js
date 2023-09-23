@@ -19,8 +19,44 @@ const MyForm = (props) => {
 
     // Handle submit function handeling click on add btn
     const handlesubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
+        const data = {
+            "user_id": 1,
+            "user_name": "John Doe",
+            "back_accounts": [
+                "HDFC0CAGSBK",
+                "Prabhat kumar"
+            ],
+            "id": 123,
+            "name": "Prabhat Kumar",
+            "accounts": {
+                "bank": "Some Bank",
+                "branch": "Some Branch",
+                "address": "123 Main Street",
+                "city": "City",
+                "district": "District",
+                "state": "State",
+                "bank_code": "ABC123",
+                "weather": {
+                    "temp": 25.5,
+                    "humidity": 50
+                }
+            }
+        }
+        try {
+            const response = await fetch(`http://localhost:5000/api/details/adddetails`, {
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data), 
+            });
+            const json = await response.json()
+            props.setState(json)
 
+        } catch (error) {
+            console.error(error.message)
+        }
     }
 
     const handleClick = async (e) => {

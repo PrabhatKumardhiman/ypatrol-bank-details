@@ -1,11 +1,13 @@
 const express = require('express')
 const app = express()
 const dotenv = require('dotenv');
+const cors = require('cors')
 
 dotenv.config()// receving files form .env
 
 
 app.use(express.json())
+app.use(cors())
 
 // Function to Connect to MONGODB
 const connectToMongo = require('./connectToMongo');
