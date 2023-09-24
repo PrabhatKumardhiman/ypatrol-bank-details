@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/ypatrol-bank-details/static/css/main.31d6cfe0.css",
-    "main.js": "/ypatrol-bank-details/static/js/main.d5eb4e9f.js",
+    "main.js": "/ypatrol-bank-details/static/js/main.f5f33ee2.js",
     "index.html": "/ypatrol-bank-details/index.html",
-    "main.d5eb4e9f.js.map": "/ypatrol-bank-details/static/js/main.d5eb4e9f.js.map"
+    "main.f5f33ee2.js.map": "/ypatrol-bank-details/static/js/main.f5f33ee2.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
-    "static/js/main.d5eb4e9f.js"
+    "static/js/main.f5f33ee2.js"
   ]
 }
