@@ -7,7 +7,6 @@ const MyForm = (props) => {
     // States
     const [weatherData, setWeatherData] = useState([])
     const [bankDetails, setbankDetails] = useState([])
-    const [user, setUser] = useState([])
 
     // On Change Function on Inputs 
     const onChange = (e) => {
@@ -63,16 +62,14 @@ const MyForm = (props) => {
 
         // Fetch FUnction to Store Data in Cloud Via Backend
         try {
-            const response = await fetch(`http://localhost:5000/api/details/adddetails`, {
+            const response = await fetch(`https://backend-assesment.onrender.com/api/details/adddetails`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(data),
             });
-            const json = await response.json()
-            // Creating User from received response
-            setUser(json)
+            await response.json()
             // Running Load function
             props.fetchDataOnLoad()
         } catch (error) {

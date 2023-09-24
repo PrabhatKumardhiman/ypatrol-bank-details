@@ -19,7 +19,7 @@ function App() {
   const fetchDataOnLoad = async () => {
     // Api Call to fetch all Details
     try {
-      const response = await fetch(`http://localhost:5000/api/details/fetchalldetails`, {
+      const response = await fetch(`https://backend-assesment.onrender.com/api/details/fetchalldetails`, {
         method: "GET",
       });
       const json = await response.json()
