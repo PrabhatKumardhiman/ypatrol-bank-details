@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/ypatrol-bank-details/static/css/main.31d6cfe0.css",
+    "main.js": "/ypatrol-bank-details/static/js/main.d5eb4e9f.js",
+    "index.html": "/ypatrol-bank-details/index.html",
+    "main.d5eb4e9f.js.map": "/ypatrol-bank-details/static/js/main.d5eb4e9f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31d6cfe0.css",
+    "static/js/main.d5eb4e9f.js"
+  ]
+}
