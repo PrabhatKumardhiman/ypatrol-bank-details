@@ -27,6 +27,7 @@ function App() {
       setState(json)
     } catch (error) {
       console.error(error.message)
+      alert("Server Error!")
     }
   }
 
