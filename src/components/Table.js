@@ -1,50 +1,49 @@
 import React, { useRef, useState } from 'react'
 
 const Table = (props) => {
+
+    // Declaring ref for open bttn in Modal
     const ref = useRef(null)
+    // Declaring ref for close bttn in Modal
     const closeRef = useRef(null)
 
+    // State Variable from where Modal is being Populated
     const [state, setState] = useState({
-        "user_id": 1,
-        "user_name": "John Doe",
-        "back_accounts": [
-            "HDFC0CAGSBK",
-            "HDFC0003933"
-        ],
-        "id": 123,
-        "name": "John Doe",
+        "user_id": "",
+        "user_name": "",
+        "back_accounts": [],
+        "id": "",
+        "name": "",
         "accounts": {
-            "bank": "Some Bank",
-            "branch": "Some Branch",
-            "address": "123 Main Street",
-            "city": "City",
-            "district": "District",
-            "state": "State",
-            "bank_code": "ABC123",
+            "bank": "",
+            "branch": "",
+            "address": "",
+            "city": "",
+            "district": "",
+            "state": "",
+            "bank_code": "",
         }
     })
-    console.log(state);
 
-
+    // Function to Open Modal
     const openModal = async (elem) => {
+        // Ref Click to Open Modal
         ref.current.click()
+        // Provding Values of the particular Clicked Bank to Modal
         await setState(elem)
-
     }
 
-    console.log(props.state)
     return (props.state.length !== 0 ?
         <>
+            {/* Modal */}
             <button
                 type="button"
-                ref={ref}
-                className="btn btn-primary d-none"
+                ref={ref} // ref loaction to open Modal
+                className="btn btn-primary d-none" // bttn display set to none
                 data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-            >
-                Launch demo modal
-  </button>
-
+                data-bs-target="#exampleModal">
+                Launch demo Modal
+                </button>
             <div
                 className="modal fade"
                 id="exampleModal"
@@ -56,8 +55,7 @@ const Table = (props) => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id="exampleModalLabel">
-                                Bank Details
-          </h1>
+                                Bank Details</h1>
                             <button
                                 type="button"
                                 className="btn-close"
@@ -112,15 +110,15 @@ const Table = (props) => {
                                 className="btn btn-secondary"
                                 data-bs-dismiss="modal"
                             >
-                                Close
-          </button>
+                                Close</button>
                         </div>
                     </div>
                 </div>
             </div>
+            {/* Modal Ends */}
 
-
-            {props.state.length == 0 ? <div class="spinner-border" role="status">
+            {/* Table Starts */}
+            {props.state.length === 0 ? <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div> :
                 <div className='table-responsive'>
@@ -136,16 +134,20 @@ const Table = (props) => {
                             </tr>
                         </thead>
                         <tbody>
+                            {/* Map Function To Populated Data Dyanmically for a user */}
                             {props.state.map((elem) => {
                                 return <tr key={Math.random()}>
                                     <td>{elem.user_id}</td>
                                     <td>{elem.user_name}</td>
+                                    {/*Map Function To Populated accounts of user Dyanmically */}
                                     <td>{elem.back_accounts.map((elem) => {
                                         return <p key={Math.random()}>{elem}</p>
                                     })}</td>
+                                    {/*Map Function To Populated Bank of user Dyanmically */}
                                     <td>{elem.accounts.map((elem) => {
                                         return <p key={Math.random()} className="text-decoration-underline text-white" onClick={() => openModal(elem)}>{elem.bank}</p>
                                     })}</td>
+                                    {/*Map Function To Populated Weather details of user Dyanmically */}
                                     <td>{elem.accounts.map((elem) => {
                                         return <p key={Math.random()}>{elem.weather.humidity}</p>
                                     })}</td>
@@ -154,14 +156,13 @@ const Table = (props) => {
                                     })}</td>
                                 </tr>
                             })}
-
                         </tbody>
                     </table>
                 </div>
             }
         </>
-
         :
+        // If No Data Avaliable on CLOUD
         <div className="conatiner d-flex align-items-center justify-content-center ">
             <h1>No Data on Cloud! Please Add some</h1>
         </div>

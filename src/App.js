@@ -5,25 +5,29 @@ import Navbar from './components/Navbar';
 import Table from './components/Table';
 
 function App() {
-
-  const [value, setValue] = useState({userid : "", name : "", bankcode : ""})
+  // States
+  const [value, setValue] = useState({ userid: "", name: "", bankcode: "" })
   const [state, setState] = useState([])
+  const [success, setSucess] = useState(false)
 
+  // Hook to Load user on render
   useEffect(() => {
-   fetchDataOnLoad()
-  }, [])
+    fetchDataOnLoad()
+  }, [success])
 
+  // Function that fetched data from Cloud Via Backend Server
   const fetchDataOnLoad = async () => {
+    // Api Call to fetch all Details
     try {
       const response = await fetch(`http://localhost:5000/api/details/fetchalldetails`, {
-          method: "GET", 
+        method: "GET",
       });
       const json = await response.json()
+      // Populating Data to State Hook
       setState(json)
-
-  } catch (error) {
+    } catch (error) {
       console.error(error.message)
-  }
+    }
   }
 
   return (
@@ -33,15 +37,14 @@ function App() {
         <div className="container mt-4">
           <div className="row">
             <div className="col-12 col-md-4">
-              <MyForm setValue = {setValue} value = {value} setState = {setState} fetchDataOnLoad = {fetchDataOnLoad}/>
+              <MyForm success = {success} setSucess = {setSucess} setValue={setValue} value={value} setState={setState} fetchDataOnLoad={fetchDataOnLoad} />
             </div>
             <div className="col-12 col-md-8">
-             <Table state = {state}/>
+              <Table state={state} />
             </div>
           </div>
         </div>
       </main>
-
     </div>
   );
 }
