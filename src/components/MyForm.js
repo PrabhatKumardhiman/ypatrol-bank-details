@@ -36,6 +36,7 @@ const MyForm = (props) => {
     // Handle submit function handeling click on add btn
     const handlesubmit = async (e) => {
         e.preventDefault()// preventing from Reload
+        props.setSucess(false)
         // Creating Data variable to send with fetch api in header body Filling data from API as Required
         const data = {
             "user_id": userid,
@@ -75,8 +76,7 @@ const MyForm = (props) => {
         } catch (error) {
             console.error(error.message)
         }
-        props.setSucess(false)
-        props.setValue({userid: "", name: "", bankcode: ""})
+        props.setValue({ userid: "", name: "", bankcode: "" })
     }
 
     // Funvtion to handle Verify Bttn 
@@ -127,7 +127,7 @@ const MyForm = (props) => {
 
     return (
         // Form To add Details
-        <div className='mb-5'>
+        <div className='mb-5' style = {{ position : "sticky", top : "25px"}}>
             <form onSubmit={handlesubmit}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">

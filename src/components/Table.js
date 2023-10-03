@@ -128,7 +128,7 @@ const Table = (props) => {
                                 <th scope="col">User Id </th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Bank</th>
-                                <th scope="col">Account Details</th>
+                                <th scope="col" >Account Details</th>
                                 <th scope="col">Humidity</th>
                                 <th scope="col">Temp</th>
                             </tr>

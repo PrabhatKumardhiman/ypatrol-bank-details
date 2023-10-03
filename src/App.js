@@ -27,7 +27,7 @@ function App() {
       setState(json)
     } catch (error) {
       console.error(error.message)
-      alert("Server Error!")
+      alert("Connecting to Server! Please Wait...")
     }
   }
 
@@ -38,7 +38,7 @@ function App() {
         <div className="container mt-4">
           <div className="row">
             <div className="col-12 col-md-4">
-              <MyForm success = {success} setSucess = {setSucess} setValue={setValue} value={value} setState={setState} fetchDataOnLoad={fetchDataOnLoad} />
+              <MyForm success={success} setSucess={setSucess} setValue={setValue} value={value} setState={setState} fetchDataOnLoad={fetchDataOnLoad} />
             </div>
             <div className="col-12 col-md-8">
               <Table state={state} />
