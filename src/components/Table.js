@@ -81,7 +81,7 @@ const Table = (props) => {
                                     <p>Address</p>
                                 </div>
                                 <div className="col-8">
-                                    <p>{state.address}</p>
+                                    <p style = {{overflow : 'auto'}}>{state.address}</p>
                                 </div>
                                 <div className="col-4">
                                     <p>City</p>
